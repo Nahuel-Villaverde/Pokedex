@@ -76,11 +76,11 @@ const Home = () => {
     }
   };
 
-  const pokemonIds = Array.from({ length: 304 }, (_, index) => index + 1);
+  const pokemonIds = Array.from({ length: 251 }, (_, index) => index + 1);
   //Para ver los de primera generacion:
   //const pokemonIds = Array.from({ length: 152 }, (_, index) => index + 1)
   //Para ver los de segunda generacion:
-  //const pokemonIds = Array.from({ length: 152 }, (_, index) => index + 152)
+  //const pokemonIds = Array.from({ length: 100 }, (_, index) => index + 152)
   
 
   useEffect(() => {

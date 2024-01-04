@@ -62,6 +62,7 @@ import '../Components.css';
 
 const Home = () => {
   const [selectedType, setSelectedType] = useState(null);
+  const [selectedGeneration, setSelectedGeneration] = useState(null); // Agregar esta línea
   const [filteredPokemonIds, setFilteredPokemonIds] = useState([]);
 
   const getPokemonTypes = async (pokemonId) => {
@@ -91,22 +92,25 @@ const Home = () => {
           return { pokemonId, pokemonTypes };
         })
       );
-
+  
       const filteredAndIncluded = filteredPokemons.filter((pokemon) => {
-        return !selectedType || pokemon.pokemonTypes.includes(selectedType);
+        return (
+          (!selectedType || pokemon.pokemonTypes.includes(selectedType)) &&
+          (!selectedGeneration || (selectedGeneration === 1 ? pokemon.pokemonId <= 151 : (pokemon.pokemonId >= 152 && pokemon.pokemonId <= 251)))
+        );
       });
-
+  
       const resultIds = filteredAndIncluded.map((pokemon) => pokemon.pokemonId);
       setFilteredPokemonIds(resultIds);
     };
-
+  
     filterPokemons();
-  }, [selectedType, pokemonIds]);
+  }, [selectedType, selectedGeneration, pokemonIds]);
 
   return (
     <body>
       <header>
-        <Navbar onTypeSelect={setSelectedType} />
+        <Navbar onTypeSelect={setSelectedType} onGenerationSelect={setSelectedGeneration} />
       </header>
       <main>
         <div id='todos'>

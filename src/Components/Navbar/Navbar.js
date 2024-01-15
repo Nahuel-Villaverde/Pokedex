@@ -3,12 +3,20 @@ import imagen from '../../Assets/logo.png';
 import '../Components.css'
 
 const Navbar = ({ onTypeSelect, onGenerationSelect }) => {
+
+    const handleVerTodosClick = () => {
+        // Llama a onTypeSelect con null para mostrar todos los tipos
+        onTypeSelect(null);
+        // Llama a onGenerationSelect null para mostrar ambas generaciones (ya que es el valor predeterminado)
+        onGenerationSelect(null);
+    };
+
     return (
 
         <nav className='nav'>
             <img src={imagen} alt="Pokedex" />
             <ul class="nav-list">
-                <li class="nav-item"><button class="btn btn-header" id="ver-todos" onClick={() => onTypeSelect(null)}>Ver todos</button></li>
+                <li class="nav-item"><button class="btn btn-header" id="ver-todos" onClick={handleVerTodosClick}>Ver todos</button></li>
                 <li class="nav-item"><button class="btn btn-header normal" id="normal" onClick={() => onTypeSelect('normal')}>Normal</button></li>
                 <li class="nav-item"><button class="btn btn-header fire" id="fire" onClick={() => onTypeSelect('fire')}>Fire</button></li>
                 <li class="nav-item"><button class="btn btn-header water" id="water" onClick={() => onTypeSelect('water')}>Water</button></li>
